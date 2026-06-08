@@ -1,26 +1,144 @@
-// Dom Selection
+/**
+ * @fileoverview Live Code Editor Core Engine
+ * Manages DOM manipulation, interactive split-pane resizing, and 
+ * dynamic lesson loading for the e-learning platform.
+ */
+
+// ==========================================
+// 1. DOM Elements
+// ==========================================
 const htmlCode = document.getElementById('html-code');
 const cssCode = document.getElementById('css-code');
 const jsCode = document.getElementById('js-code');
 const outputLayar = document.getElementById('output');
-// Execute Code Function
+
+const resizer = document.getElementById('drag-handle');
+const theoryPanel = document.getElementById('theory-panel');
+const btnToggleMateri = document.getElementById('toggle-materi');
+const btnTutupDalam = document.querySelector('.toggle-panel');
+
+const judulMateri = document.querySelector('.theory-header h2');
+const isiMateri = document.getElementById('theory-content');
+const btnPrev = document.querySelector('.btn-prev');
+const btnNext = document.querySelector('.btn-next');
+
+// ==========================================
+// 2. State Management
+// ==========================================
+let isResizing = false;
+let currentLessonIndex = 0;
+
+// ==========================================
+// 3. Core Engine: Live Preview
+// ==========================================
+/**
+ * Injects user input into the iframe context.
+ * Triggered on every 'input' event from the editor textareas.
+ */
 function jalankanKode() {
-    const rakitanWeb =
-        `
-            <html>
-            <head>
-                <style>${cssCode.value}</style>
-            </head>
-            <body>
-                ${htmlCode.value}
-                <script>
-                ${jsCode.value}
-                </script>
-            </body>
-            </html>
-            `;
+    const rakitanWeb = `
+        <html>
+        <head>
+            <style>${cssCode.value}</style>
+        </head>
+        <body>
+            ${htmlCode.value}
+            <script>
+            ${jsCode.value}
+            </script>
+        </body>
+        </html>
+    `;
     outputLayar.srcdoc = rakitanWeb;
 }
-htmlCode.addEventListener('input', jalankanKode);
-cssCode.addEventListener('input', jalankanKode);
-jsCode.addEventListener('input', jalankanKode);
+
+[htmlCode, cssCode, jsCode].forEach(el => {
+    el.addEventListener('input', jalankanKode);
+});
+
+// ==========================================
+// 4. UI Handlers: Resizer & Sidebar Toggle
+// ==========================================
+resizer.addEventListener('mousedown', () => {
+    isResizing = true;
+    resizer.classList.add('is-resizing');
+    document.body.style.userSelect = 'none';
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isResizing) return;
+    
+    const newWidth = e.clientX;
+    // Boundary constraints: min 200px, max 50vw
+    if (newWidth > 200 && newWidth < window.innerWidth / 2) {
+        theoryPanel.style.width = `${newWidth}px`;
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    if (isResizing) {
+        isResizing = false;
+        resizer.classList.remove('is-resizing');
+        document.body.style.userSelect = 'auto';
+    }
+});
+
+/**
+ * Toggles the visibility of the theory sidebar.
+ */
+function toggleSidebar() {
+    const isHidden = theoryPanel.style.display === 'none';
+    theoryPanel.style.display = isHidden ? 'flex' : 'none';
+    resizer.style.display = isHidden ? 'block' : 'none';
+}
+
+btnToggleMateri.addEventListener('click', toggleSidebar);
+btnTutupDalam.addEventListener('click', toggleSidebar);
+
+// ==========================================
+// 5. E-Learning Controller
+// ==========================================
+/**
+ * Loads lesson data from the active index and populates the UI.
+ * Depends on the global `daftarModul` array from lesson.js.
+ */
+function muatPelajaran() {
+    if (typeof daftarModul === 'undefined' || !daftarModul.length) return;
+
+    const materi = daftarModul[currentLessonIndex];
+
+    // Populate UI content
+    judulMateri.textContent = materi.judul;
+    isiMateri.innerHTML = `
+        <h3 style="color: #ff9f1c;">💡 Teori Singkat</h3>
+        <p>${materi.teori}</p>
+        <br>
+        <h4 style="color: #ff9f1c;">🔥 Tantangan</h4>
+        <p>${materi.tantangan}</p>
+    `;
+
+    // Populate editor templates
+    htmlCode.value = materi.kodeHTML;
+    cssCode.value = materi.kodeCSS;
+    jsCode.value = materi.kodeJS;
+
+    // Trigger initial render
+    jalankanKode();
+}
+
+btnNext.addEventListener('click', () => {
+    if (currentLessonIndex < daftarModul.length - 1) {
+        currentLessonIndex++;
+        muatPelajaran();
+    }
+});
+
+btnPrev.addEventListener('click', () => {
+    if (currentLessonIndex > 0) {
+        currentLessonIndex--;
+        muatPelajaran();
+    }
+});
+
+// Initialize first lesson on load
+muatPelajaran();
