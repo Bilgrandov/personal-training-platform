@@ -96,11 +96,20 @@ btnToggleMateri.addEventListener('click', toggleSidebar);
 btnTutupDalam.addEventListener('click', toggleSidebar);
 
 // ==========================================
-// 5. E-Learning Controller
+// 5. E-Learning Controller (Router & Loader)
 // ==========================================
 /**
+ * Router: Membaca parameter URL (?project=...) untuk menentukan proyek mana yang dimuat.
+ */
+const urlParams = new URLSearchParams(window.location.search);
+const activeProjectKey = urlParams.get('project') || 'dasar'; // Default ke 'dasar' jika URL kosong
+
+// Memilih array materi yang sesuai dari databaseMateri di lesson.js
+const daftarModul = databaseMateri[activeProjectKey];
+
+/**
  * Loads lesson data from the active index and populates the UI.
- * Depends on the global `daftarModul` array from lesson.js.
+ * Depends on the `daftarModul` array resolved from the router above.
  */
 function muatPelajaran() {
     if (typeof daftarModul === 'undefined' || !daftarModul.length) return;

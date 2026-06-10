@@ -1,67 +1,45 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>personal-training-platform</title>
+    <title>Dashboard - Personal Training Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-
-    <!-- Main -->
-    <main class="container">
-        <!-- Theory-Panel  -->
-        <div class="theory-panel" id="theory-panel">
-            <div class="theory-header">
-                <h2>📚 Modul 1</h2>
-                <button class="toggle-panel">Tutup</button>
-            </div>
-            <div class="theory-content" id="theory-content">
-                <h3>Pengenalan DOM</h3>
-                <p>Penjelasan Materi</p>
-                <br>
-                <h4>Tantangan</h4>
-                <p>Buat Tombol yang memunculkan teks tersembunyi</p>
-            </div>
-            <div class="theory-footer">
-                <button class="btn-prev">Sebelumnya</button>
-                <button class="btn-next">Selanjutnya</button>
-            </div>
-        </div>
-
-        <div class="resizer" id="drag-handle"></div>
-
-        <!-- left-panel: Editor -->
-        <div class="editor-panel">
-            <!-- Button Buka Materi -->
-            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 5px;">
-                <button id="toggle-materi"
-                    style="padding: 5px 10px; cursor: pointer; background: #ff9f1c; border: none; border-radius: 4px; font-weight: bold;">📖
-                    Materi</button>
-            </div>
-
-            <h3>HTML</h3>
-            <textarea id="html-code" placeholder="Ketik HTML disini..."></textarea>
-
-            <h3>CSS</h3>
-            <textarea id="css-code" placeholder="Ketik CSS disini..."></textarea>
-
-            <h3>JavaScript</h3>
-            <textarea id="js-code" placeholder="Ketik JavaScript disini..."></textarea>
-        </div>
-
-        <!-- right-panel: Output -->
-
-        <div class="output-panel">
-            <h3>Live Preview</h3>
-            <iframe id="output"></iframe>
-        </div>
+<body class="dashboard-body">
+    <!-- header -->
+    <header class="dashboard-header">
+        <h1>Pusat Pelatihan Developer</h1>
+        <p>Pilih jalur proyek yang ingin kamu pelajari hari ini.</p>
+    </header>
+    <main class="project-grid">
+        <!-- card 1 -->
+        <a href="editor.html?project=dasar" class="project-card">
+            <h3>Fondasi Web Modern</h3>
+            <p>Belajar layouting dengan Flexbox, Grid, dan Form API.</p>
+            <span class="badge">5 Modul</span>
+        </a>
+        <!-- card 2 -->
+        <a href="editor.html?project=oop" class="project-card">
+            <h3>Game RPG (OOP)</h3>
+            <p>Belajar Object Oriented Programming (OOP) lewat game berbasis teks.</p>
+            <span class="badge">Segera Hadir</span>
+        </a>
+        <!-- card 3 -->
+        <a href="editor.html?project=dom" class="project-card">
+            <h3>Aplikasi Kalkulator</h3>
+            <p>Memahami manipulasi DOM tingkat lanjut dan logika matematika.</p>
+            <span class="badge">Segera Hadir</span>
+        </a>
+        <!-- card 4 (BARU!) -->
+        <a href="editor.html?project=platform" class="project-card" style="border-color: #ff9f1c;">
+            <h3 style="color: #ff9f1c;">🛠️ Rahasia Dapur Editor</h3>
+            <p>Membongkar cara kerja Live Editor ini dibuat menggunakan Vanilla JS.</p>
+            <span class="badge" style="background: #ff9f1c; color: black;">Baru Ditambahkan!</span>
+        </a>
     </main>
-
-    <!-- Execute Js -->
-    <script src="lesson.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
