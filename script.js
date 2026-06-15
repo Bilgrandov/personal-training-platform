@@ -11,6 +11,8 @@ const htmlCode = document.getElementById('html-code');
 const cssCode = document.getElementById('css-code');
 const jsCode = document.getElementById('js-code');
 const outputLayar = document.getElementById('output');
+const consoleOutput = document.getElementById('console-output');
+const btnClearConsole = document.getElementById('clear-console');
 
 const resizer = document.getElementById('drag-handle');
 const theoryPanel = document.getElementById('theory-panel');
@@ -29,13 +31,16 @@ let isResizing = false;
 let currentLessonIndex = 0;
 
 // ==========================================
-// 3. Core Engine: Live Preview
+// 3. Core Engine: Live Preview & Terminal Intercept
 // ==========================================
 /**
- * Injects user input into the iframe context.
+ * Injects user input and sandbox console interceptor into the iframe context.
  * Triggered on every 'input' event from the editor textareas.
  */
 function jalankanKode() {
+    if (consoleOutput) {
+        consoleOutput.innerHTML = '';
+    }
     const rakitanWeb = `
         <html>
         <head>
@@ -43,6 +48,25 @@ function jalankanKode() {
         </head>
         <body>
             ${htmlCode.value}
+            <script>
+            (function() {
+                const originalLog = console.log;
+                console.log = function(...args) {
+                    originalLog.apply(console, args);
+                    const formatted = args.map(arg => {
+                        if (typeof arg === 'object') {
+                            try { return JSON.stringify(arg); } catch(e) { return String(arg); }
+                        }
+                        return String(arg);
+                    }).join(' ');
+                    window.parent.postMessage({ type: 'CONSOLE_LOG', text: formatted }, '*');
+                };
+                window.onerror = function(message, source, lineno, colno, error) {
+                    window.parent.postMessage({ type: 'CONSOLE_ERROR', text: message + ' (Baris ' + lineno + ')' }, '*');
+                    return false;
+                };
+            })();
+            </script>
             <script>
             ${jsCode.value}
             </script>
@@ -55,6 +79,32 @@ function jalankanKode() {
 [htmlCode, cssCode, jsCode].forEach(el => {
     el.addEventListener('input', jalankanKode);
 });
+
+// Listener untuk menangkap log dari iframe
+window.addEventListener('message', (event) => {
+    if (!consoleOutput) return;
+    const data = event.data;
+    if (data && (data.type === 'CONSOLE_LOG' || data.type === 'CONSOLE_ERROR')) {
+        const line = document.createElement('div');
+        line.classList.add('console-line');
+        if (data.type === 'CONSOLE_ERROR') {
+            line.classList.add('console-error');
+            line.textContent = `❌ ${data.text}`;
+        } else {
+            line.classList.add('console-log-line');
+            line.textContent = `> ${data.text}`;
+        }
+        consoleOutput.appendChild(line);
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+});
+
+// Tombol Clear Console
+if (btnClearConsole) {
+    btnClearConsole.addEventListener('click', () => {
+        consoleOutput.innerHTML = '<div class="console-line console-system">> Console cleared.</div>';
+    });
+}
 
 // ==========================================
 // 4. UI Handlers: Resizer & Sidebar Toggle

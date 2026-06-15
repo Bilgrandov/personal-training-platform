@@ -1,45 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Personal Training Portal</title>
+    <title>Pusat Pelatihan Developer - Project Explorer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="dashboard-body">
-    <!-- header -->
-    <header class="dashboard-header">
-        <h1>Pusat Pelatihan Developer</h1>
-        <p>Pilih jalur proyek yang ingin kamu pelajari hari ini.</p>
-    </header>
-    <main class="project-grid">
-        <!-- card 1 -->
-        <a href="editor.html?project=dasar" class="project-card">
-            <h3>Fondasi Web Modern</h3>
-            <p>Belajar layouting dengan Flexbox, Grid, dan Form API.</p>
-            <span class="badge">5 Modul</span>
-        </a>
-        <!-- card 2 -->
-        <a href="editor.html?project=oop" class="project-card">
-            <h3>Game RPG (OOP)</h3>
-            <p>Belajar Object Oriented Programming (OOP) lewat game berbasis teks.</p>
-            <span class="badge">Segera Hadir</span>
-        </a>
-        <!-- card 3 -->
-        <a href="editor.html?project=dom" class="project-card">
-            <h3>Aplikasi Kalkulator</h3>
-            <p>Memahami manipulasi DOM tingkat lanjut dan logika matematika.</p>
-            <span class="badge">Segera Hadir</span>
-        </a>
-        <!-- card 4 (BARU!) -->
-        <a href="editor.html?project=platform" class="project-card" style="border-color: #ff9f1c;">
-            <h3 style="color: #ff9f1c;">🛠️ Rahasia Dapur Editor</h3>
-            <p>Membongkar cara kerja Live Editor ini dibuat menggunakan Vanilla JS.</p>
-            <span class="badge" style="background: #ff9f1c; color: black;">Baru Ditambahkan!</span>
-        </a>
-    </main>
+
+    <!-- IDE Explorer Workspace Layout -->
+    <div class="explorer-layout">
+        
+        <!-- Sidebar Directory Tree -->
+        <aside class="explorer-sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title">📁 PROJECT EXPLORER</span>
+            </div>
+            
+            <nav class="directory-tree">
+                <div class="tree-root">
+                    
+                    <!-- Project 1 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder active" data-project="dasar">
+                            <span class="icon">📁</span> dasar/
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_styling_rem.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_flexbox_layout.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_css_grid.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_html_forms.html</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_fetch_api.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder" data-project="oop">
+                            <span class="icon">📁</span> oop/
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_class_object.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_inheritance.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_encapsulation.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_polymorphism.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_battle_loop.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder" data-project="dom">
+                            <span class="icon">📁</span> dom/
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_calculator_grid.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_click_listeners.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_screen_update.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_reset_button.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_eval_calculation.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder" data-project="platform">
+                            <span class="icon">📁</span> platform/ <span class="tag-new">NEW</span>
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_value_listeners.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_iframe_srcdoc.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_resizer_gutter.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_multi_database.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_url_params.js</span>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <span class="user-badge">Apple Academy Candidate</span>
+            </div>
+        </aside>
+
+        <!-- Preview Detail Panel -->
+        <main class="preview-panel">
+            <div class="preview-inner">
+                <div id="project-details" class="details-content">
+                    <!-- Dynamic project details injected here -->
+                </div>
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- Live Preview Script -->
+    <script>
+        const projectData = {
+            dasar: {
+                title: "🎨 Fondasi Web Modern",
+                desc: "Kuasai tata letak halaman responsif menggunakan Flexbox, CSS Grid, serta manajemen form tradisional hingga modern API handling.",
+                difficulty: "BEGINNER",
+                difficultyClass: "text-green",
+                duration: "~1.5 JAM",
+                modules: "5 Pelajaran",
+                engine: "HTML5 / CSS3",
+                status: "READY",
+                link: "editor.html?project=dasar"
+            },
+            oop: {
+                title: "🗡️ Game RPG (OOP)",
+                desc: "Pahami paradigma Object-Oriented Programming (OOP) melalui rancangan cetakan class Karakter, enkapsulasi status HP, polimorfisme serangan, hingga simulasi loop pertarungan otomatis bergilir.",
+                difficulty: "INTERMEDIATE",
+                difficultyClass: "text-amber",
+                duration: "~2.5 JAM",
+                modules: "5 Pelajaran",
+                engine: "JAVASCRIPT (ES6)",
+                status: "READY",
+                link: "editor.html?project=oop"
+            },
+            dom: {
+                title: "📱 Aplikasi Kalkulator",
+                desc: "Eksplorasi manipulasi DOM tingkat lanjut dan penanganan logika matematika dinamis secara real-time lewat event listener tombol serta evaluasi ekspresi matematis.",
+                difficulty: "INTERMEDIATE",
+                difficultyClass: "text-amber",
+                duration: "~2.0 JAM",
+                modules: "5 Pelajaran",
+                engine: "VANILLA DOM API",
+                status: "READY",
+                link: "editor.html?project=dom"
+            },
+            platform: {
+                title: "🛠️ Rahasia Dapur Editor",
+                desc: "Bedah arsitektur di balik Live Editor ini dibangun! Pelajari manipulasi srcdoc Iframe secara dinamis, penangkapan kordinat pointer mouse (resizer drag), dan perutean URL parameters.",
+                difficulty: "ADVANCED",
+                difficultyClass: "text-red",
+                duration: "~3.0 JAM",
+                modules: "5 Pelajaran",
+                engine: "VANILLA JS CORE",
+                status: "READY",
+                link: "editor.html?project=platform"
+            }
+        };
+
+        function updatePreview(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            const details = document.getElementById('project-details');
+            details.innerHTML = `
+                <h2 class="project-title">${data.title}</h2>
+                <p class="project-desc">${data.desc}</p>
+                
+                <div class="meta-section">
+                    <div class="meta-row">
+                        <span class="meta-label">DIFFICULTY:</span> 
+                        <span class="meta-value ${data.difficultyClass}">${data.difficulty}</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">EST. DURATION:</span> 
+                        <span class="meta-value">${data.duration}</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">CURRICULUM:</span> 
+                        <span class="meta-value">${data.modules}</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">CORE ENGINE:</span> 
+                        <span class="meta-value">${data.engine}</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-diag">
+                    <div class="terminal-header">system_diagnostics.log</div>
+                    <pre class="terminal-body">> status: ${data.status}
+> modules: ${data.modules} loaded.
+> compiler_check: OK
+> environment: local_sandbox_active
+> target_destination: portfolio_apple_academy</pre>
+                </div>
+                
+                <a href="${data.link}" class="launch-btn">⚡ LAUNCH WORKSPACE</a>
+            `;
+        }
+
+        // Click actions
+        document.querySelectorAll('.tree-item.folder').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.tree-item.folder').forEach(f => f.classList.remove('active'));
+                item.classList.add('active');
+                const key = item.getAttribute('data-project');
+                updatePreview(key);
+            });
+        });
+
+        // Init
+        updatePreview('dasar');
+    </script>
+
 </body>
 
 </html>

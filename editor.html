@@ -1,66 +1,90 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>personal-training-platform</title>
+    <title>Live Interactive Editor - Developer Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Main -->
+    <!-- Main Workspace -->
     <main class="container">
-        <!-- Theory-Panel  -->
+        <!-- Theory-Panel (Sidebar) -->
         <div class="theory-panel" id="theory-panel">
             <div class="theory-header">
-                <h2>📚 Modul 1</h2>
+                <h2>📚 Kurikulum</h2>
                 <button class="toggle-panel">Tutup</button>
             </div>
             <div class="theory-content" id="theory-content">
-                <h3>Pengenalan DOM</h3>
-                <p>Penjelasan Materi</p>
-                <br>
-                <h4>Tantangan</h4>
-                <p>Buat Tombol yang memunculkan teks tersembunyi</p>
+                <!-- Content injected dynamically via script.js -->
             </div>
             <div class="theory-footer">
-                <button class="btn-prev">Sebelumnya</button>
-                <button class="btn-next">Selanjutnya</button>
+                <button class="btn-prev">⬅️ Sebelum</button>
+                <button class="btn-next">Lanjut ➡️</button>
             </div>
         </div>
 
+        <!-- Draggable Resizer Handle -->
         <div class="resizer" id="drag-handle"></div>
 
-        <!-- left-panel: Editor -->
+        <!-- Editor Panel -->
         <div class="editor-panel">
             <!-- Navigation Buttons -->
-            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 5px;">
-                <a href="index.html" style="text-decoration: none; padding: 5px 10px; background: #444; color: white; border-radius: 4px; font-weight: bold; border: 1px solid #555;">🏠 Dashboard</a>
-                <button id="toggle-materi"
-                    style="padding: 5px 10px; cursor: pointer; background: #ff9f1c; border: none; border-radius: 4px; font-weight: bold; color: black;">📖
-                    Materi</button>
+            <div class="editor-nav">
+                <a href="index.html" class="nav-btn-secondary">🏠 Dashboard</a>
+                <button id="toggle-materi" class="nav-btn-primary">📖 Materi</button>
             </div>
 
-            <h3>HTML</h3>
-            <textarea id="html-code" placeholder="Ketik HTML disini..."></textarea>
+            <!-- HTML Editor Group -->
+            <div class="editor-group">
+                <div class="editor-tab">
+                    <span class="tab-dot html-dot"></span>
+                    <span>index.html</span>
+                </div>
+                <textarea id="html-code" placeholder="Ketik HTML di sini..." spellcheck="false"></textarea>
+            </div>
 
-            <h3>CSS</h3>
-            <textarea id="css-code" placeholder="Ketik CSS disini..."></textarea>
+            <!-- CSS Editor Group -->
+            <div class="editor-group">
+                <div class="editor-tab">
+                    <span class="tab-dot css-dot"></span>
+                    <span>style.css</span>
+                </div>
+                <textarea id="css-code" placeholder="Ketik CSS di sini..." spellcheck="false"></textarea>
+            </div>
 
-            <h3>JavaScript</h3>
-            <textarea id="js-code" placeholder="Ketik JavaScript disini..."></textarea>
+            <!-- JavaScript Editor Group -->
+            <div class="editor-group">
+                <div class="editor-tab">
+                    <span class="tab-dot js-dot"></span>
+                    <span>script.js</span>
+                </div>
+                <textarea id="js-code" placeholder="Ketik JavaScript di sini..." spellcheck="false"></textarea>
+            </div>
         </div>
 
-        <!-- right-panel: Output -->
-
+        <!-- Output Panel -->
         <div class="output-panel">
-            <h3>Live Preview</h3>
+            <h3>Live Viewport</h3>
             <iframe id="output"></iframe>
+
+            <!-- Custom Sandbox Terminal Console -->
+            <div class="console-panel">
+                <div class="console-header">
+                    <span class="console-title">🖥️ Terminal Sandbox</span>
+                    <button id="clear-console" class="console-clear-btn">Clear</button>
+                </div>
+                <div id="console-output" class="console-body">
+                    <div class="console-line console-system">> Ready. Console logs and errors will show here.</div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- Execute Js -->
+    <!-- Project Data & Engine Scripts -->
     <script src="lesson.js"></script>
     <script src="script.js"></script>
 </body>

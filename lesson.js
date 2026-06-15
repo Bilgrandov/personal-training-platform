@@ -59,6 +59,42 @@ const databaseMateri = {
             kodeHTML: "<div id='game-screen'>\n  <h2>Log Pertarungan:</h2>\n  <ul id='log'></ul>\n</div>",
             kodeCSS: "body { background: black; color: #00ff00; font-family: monospace; padding: 20px; }",
             kodeJS: "class Karakter {\n  constructor(nama, hp, atk) {\n    this.nama = nama;\n    this.hp = hp;\n    this.atk = atk;\n  }\n  \n  serang(target) {\n    return `${this.nama} menyerang ${target} dengan damage ${this.atk}!`;\n  }\n}\n\n// Ketik kodemu di sini:\n// const hero = new Karakter('Arthur', 100, 15);\n"
+        },
+        {
+            id: 2,
+            judul: "🗡️ Modul 2: Pewarisan (Inheritance)",
+            teori: "Pewarisan (Inheritance) memungkinkan sebuah Class mewarisi semua properti dan metode dari Class induk. Kita menggunakan kata kunci extends untuk mewarisi dan super untuk menjalankan constructor induk.",
+            tantangan: "Tantangan: Buat class Hero yang mewarisi class Karakter dengan kata kunci extends. Tambahkan parameter properti baru 'peran' di constructor-nya dan panggil super().",
+            kodeHTML: "<div id='game-screen'>\n  <h2>Log Pertarungan:</h2>\n  <ul id='log'></ul>\n</div>",
+            kodeCSS: "body { background: black; color: #00ff00; font-family: monospace; padding: 20px; }",
+            kodeJS: "class Karakter {\n  constructor(nama, hp, atk) {\n    this.nama = nama;\n    this.hp = hp;\n    this.atk = atk;\n  }\n  \n  serang(target) {\n    return `${this.nama} menyerang ${target} dengan damage ${this.atk}!`;\n  }\n}\n\n// Tantangan: Buat class Hero di bawah ini yang mewarisi Karakter\n"
+        },
+        {
+            id: 3,
+            judul: "🗡️ Modul 3: Enkapsulasi (Encapsulation)",
+            teori: "Enkapsulasi bertujuan untuk menyembunyikan detail data dan membatasi akses langsung. Kita bisa menggunakan getter dan setter untuk memastikan data yang diubah tetap valid (misalnya, nilai HP tidak boleh kurang dari 0).",
+            tantangan: "Tantangan: Buat getter dan setter untuk properti hp agar nilainya tidak bisa diset kurang dari 0 (jika ada input < 0, atur nilainya menjadi 0).",
+            kodeHTML: "<div id='game-screen'>\n  <h2>Log Pertarungan:</h2>\n  <ul id='log'></ul>\n</div>",
+            kodeCSS: "body { background: black; color: #00ff00; font-family: monospace; padding: 20px; }",
+            kodeJS: "class Karakter {\n  constructor(nama, hp, atk) {\n    this.nama = nama;\n    this._hp = hp; // Menggunakan konvensi _hp untuk properti privat\n    this.atk = atk;\n  }\n  \n  // Tantangan: Tambahkan getter hp dan setter hp di bawah ini:\n  \n}"
+        },
+        {
+            id: 4,
+            judul: "🗡️ Modul 4: Polimorfisme (Polymorphism)",
+            teori: "Polimorfisme adalah kemampuan objek yang berbeda untuk merespons metode dengan nama yang sama secara unik. Kita dapat menimpa (override) metode serang milik induk di class anak.",
+            tantangan: "Tantangan: Buat class Monster yang mewarisi Karakter, lalu timpa metode serang(target) agar mengembalikan log: 'Monster [nama] mencakar [target]!'",
+            kodeHTML: "<div id='game-screen'>\n  <h2>Log Pertarungan:</h2>\n  <ul id='log'></ul>\n</div>",
+            kodeCSS: "body { background: black; color: #00ff00; font-family: monospace; padding: 20px; }",
+            kodeJS: "class Karakter {\n  constructor(nama, hp, atk) {\n    this.nama = nama;\n    this.hp = hp;\n    this.atk = atk;\n  }\n  \n  serang(target) {\n    return `${this.nama} menyerang ${target}!`;\n  }\n}\n\n// Tantangan: Buat class Monster dan timpa metode serang() di bawah ini\n"
+        },
+        {
+            id: 5,
+            judul: "🗡️ Modul 5: Logika Pertarungan Bergilir (Battle Loop)",
+            teori: "Sekarang, mari satukan semuanya ke dalam logika pertarungan otomatis. Kita akan membuat loop sederhana di mana Hero dan Monster saling menyerang secara bergantian menggunakan perulangan while selama HP keduanya masih di atas 0.",
+            tantangan: "Tantangan: Lengkapi fungsi bertarung(hero, monster) menggunakan loop while. Di setiap putaran, hero menyerang monster, dan jika monster masih hidup (hp > 0), monster menyerang balik hero. Gunakan fungsi cetakLog untuk menampilkan log pertarungan.",
+            kodeHTML: "<div id='game-screen'>\n  <h2>Simulasi Pertarungan RPG:</h2>\n  <ul id='log'></ul>\n</div>",
+            kodeCSS: "body { background: black; color: #00ff00; font-family: monospace; padding: 20px; }",
+            kodeJS: "class Karakter {\n  constructor(nama, hp, atk) {\n    this.nama = nama;\n    this.hp = hp;\n    this.atk = atk;\n  }\n  \n  serang(target) {\n    target.hp -= this.atk;\n    return `${this.nama} menyerang ${target.nama} (Sisa HP ${target.nama}: ${target.hp < 0 ? 0 : target.hp})`;\n  }\n}\n\nconst log = document.getElementById('log');\nfunction cetakLog(teks) {\n  const li = document.createElement('li');\n  li.textContent = teks;\n  log.appendChild(li);\n}\n\n// Tantangan: Buat fungsi pertarungan di bawah ini\nfunction bertarung(hero, monster) {\n  \n}"
         }
     ],
 
@@ -72,6 +108,42 @@ const databaseMateri = {
             kodeHTML: "<div class='calculator'>\n  <div class='screen'>0</div>\n  <div class='keypad'>\n    <button>7</button><button>8</button><button>9</button><button>/</button>\n    <button>4</button><button>5</button><button>6</button><button>*</button>\n    <button>1</button><button>2</button><button>3</button><button>-</button>\n    <button>C</button><button>0</button><button>=</button><button>+</button>\n  </div>\n</div>",
             kodeCSS: ".calculator { width: 300px; background: #333; padding: 20px; border-radius: 10px; margin: 20px auto; }\n.screen { background: #fff; text-align: right; font-size: 2rem; padding: 10px; margin-bottom: 10px; border-radius: 5px; }\n\n.keypad {\n  /* Ketik properti Grid di sini */\n  \n  gap: 10px;\n}\n\nbutton { padding: 15px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; border: none; }",
             kodeJS: "// Kosong"
+        },
+        {
+            id: 2,
+            judul: "📱 Modul 2: DOM Selection & Event Listener",
+            teori: "Agar tombol kalkulator bisa bereaksi ketika diklik, kita harus menangkap semua tombol menggunakan querySelectorAll dan memasang addEventListener pada masing-masing tombol menggunakan perulangan forEach.",
+            tantangan: "Tantangan: Lengkapi baris di dalam forEach untuk mencetak teks isi tombol yang sedang diklik ke dalam konsol menggunakan console.log.",
+            kodeHTML: "<div class='calculator'>\n  <div class='screen'>0</div>\n  <div class='keypad'>\n    <button>7</button><button>8</button><button>9</button><button>/</button>\n    <button>4</button><button>5</button><button>6</button><button>*</button>\n    <button>1</button><button>2</button><button>3</button><button>-</button>\n    <button>C</button><button>0</button><button>=</button><button>+</button>\n  </div>\n</div>",
+            kodeCSS: ".calculator { width: 300px; background: #333; padding: 20px; border-radius: 10px; margin: 20px auto; }\n.screen { background: #fff; text-align: right; font-size: 2rem; padding: 10px; margin-bottom: 10px; border-radius: 5px; color: black; }\n.keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }\nbutton { padding: 15px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; border: none; }",
+            kodeJS: "const tombol = document.querySelectorAll('.keypad button');\n\ntombol.forEach(btn => {\n  btn.addEventListener('click', () => {\n    // Tantangan: Tulis console.log teks tombol di bawah ini:\n    \n  });\n});"
+        },
+        {
+            id: 3,
+            judul: "📱 Modul 3: Input Angka & Update Layar",
+            teori: "Sekarang, mari kita tampilkan angka yang kita klik ke layar kalkulator. Kita perlu menangkap elemen screen, memeriksa apakah layarnya masih bernilai '0', lalu menimpa atau menyambungkannya dengan angka baru.",
+            tantangan: "Tantangan: Tangkap elemen screen dengan id 'display'. Jika isi layar saat ini adalah '0', ganti isinya dengan teks tombol yang diklik. Jika bukan '0', sambungkan teks tombol tersebut ke layar.",
+            kodeHTML: "<div class='calculator'>\n  <div class='screen' id='display'>0</div>\n  <div class='keypad'>\n    <button>7</button><button>8</button><button>9</button><button>/</button>\n    <button>4</button><button>5</button><button>6</button><button>*</button>\n    <button>1</button><button>2</button><button>3</button><button>-</button>\n    <button>C</button><button>0</button><button>=</button><button>+</button>\n  </div>\n</div>",
+            kodeCSS: ".calculator { width: 300px; background: #333; padding: 20px; border-radius: 10px; margin: 20px auto; }\n.screen { background: #fff; text-align: right; font-size: 2rem; padding: 10px; margin-bottom: 10px; border-radius: 5px; color: black; }\n.keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }\nbutton { padding: 15px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; border: none; }",
+            kodeJS: "const layar = document.getElementById('display');\nconst tombol = document.querySelectorAll('.keypad button');\n\ntombol.forEach(btn => {\n  btn.addEventListener('click', () => {\n    const nilai = btn.textContent;\n    \n    // Tantangan: Tulis logika untuk memperbarui teks layar di sini:\n    \n  });\n});"
+        },
+        {
+            id: 4,
+            judul: "📱 Modul 4: Operasi Matematika & Reset (C)",
+            teori: "Kalkulator membutuhkan tombol reset 'C' untuk mengosongkan layar kembali ke '0'. Selain itu, jika tombol yang ditekan adalah operator matematika (+, -, *, /) atau angka, kita harus menambahkannya ke layar.",
+            tantangan: "Tantangan: Lengkapi kondisi percabangan di bawah ini. Jika tombol yang diklik adalah 'C', ubah teks layar kembali menjadi '0'.",
+            kodeHTML: "<div class='calculator'>\n  <div class='screen' id='display'>0</div>\n  <div class='keypad'>\n    <button>7</button><button>8</button><button>9</button><button>/</button>\n    <button>4</button><button>5</button><button>6</button><button>*</button>\n    <button>1</button><button>2</button><button>3</button><button>-</button>\n    <button>C</button><button>0</button><button>=</button><button>+</button>\n  </div>\n</div>",
+            kodeCSS: ".calculator { width: 300px; background: #333; padding: 20px; border-radius: 10px; margin: 20px auto; }\n.screen { background: #fff; text-align: right; font-size: 2rem; padding: 10px; margin-bottom: 10px; border-radius: 5px; color: black; }\n.keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }\nbutton { padding: 15px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; border: none; }",
+            kodeJS: "const layar = document.getElementById('display');\nconst tombol = document.querySelectorAll('.keypad button');\n\ntombol.forEach(btn => {\n  btn.addEventListener('click', () => {\n    const nilai = btn.textContent;\n    \n    // Tantangan: Buat kondisi khusus jika nilai === 'C'\n    if (nilai === 'C') {\n      // Tulis kode reset layar di sini\n    } else {\n      if (layar.textContent === '0') {\n        layar.textContent = nilai;\n      } else {\n        layar.textContent += nilai;\n      }\n    }\n  });\n});"
+        },
+        {
+            id: 5,
+            judul: "📱 Modul 5: Kalkulasi Hasil Akhir (=)",
+            teori: "Modul terakhir! Kita akan mengevaluasi ekspresi matematika di layar menggunakan fungsi bawaan JavaScript eval(). Untuk menghindari crash karena ekspresi yang tidak valid, kita wajib membungkusnya dengan blok try...catch.",
+            tantangan: "Tantangan: Tambahkan kondisi else-if jika tombol yang diklik adalah '='. Evaluasikan ekspresi di dalam layar dan tampilkan hasilnya, atau tampilkan 'Error' jika terjadi kesalahan input.",
+            kodeHTML: "<div class='calculator'>\n  <div class='screen' id='display'>0</div>\n  <div class='keypad'>\n    <button>7</button><button>8</button><button>9</button><button>/</button>\n    <button>4</button><button>5</button><button>6</button><button>*</button>\n    <button>1</button><button>2</button><button>3</button><button>-</button>\n    <button>C</button><button>0</button><button>=</button><button>+</button>\n  </div>\n</div>",
+            kodeCSS: ".calculator { width: 300px; background: #333; padding: 20px; border-radius: 10px; margin: 20px auto; }\n.screen { background: #fff; text-align: right; font-size: 2rem; padding: 10px; margin-bottom: 10px; border-radius: 5px; color: black; }\n.keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }\nbutton { padding: 15px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; border: none; }",
+            kodeJS: "const layar = document.getElementById('display');\nconst tombol = document.querySelectorAll('.keypad button');\n\ntombol.forEach(btn => {\n  btn.addEventListener('click', () => {\n    const nilai = btn.textContent;\n    \n    if (nilai === 'C') {\n      layar.textContent = '0';\n    } else if (nilai === '=') {\n      // Tantangan: Hitung hasil ekspresi menggunakan eval() di dalam try...catch\n      \n    } else {\n      if (layar.textContent === '0') {\n        layar.textContent = nilai;\n      } else {\n        layar.textContent += nilai;\n      }\n    }\n  });\n});"
         }
     ],
 
