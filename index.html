@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pusat Pelatihan Developer - Project Explorer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <script>
+        const initialTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', initialTheme);
+    </script>
 </head>
 
 <body class="dashboard-body">
@@ -67,7 +71,7 @@
                     <!-- Project 4 -->
                     <div class="tree-node">
                         <span class="tree-item folder" data-project="platform">
-                            <span class="icon">📁</span> platform/ <span class="tag-new">NEW</span>
+                            <span class="icon">📁</span> platform/
                         </span>
                         <div class="tree-sub">
                             <span class="tree-item file"><span class="icon">📄</span> 01_value_listeners.js</span>
@@ -78,11 +82,40 @@
                         </div>
                     </div>
 
+                    <!-- Project 5 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder" data-project="design">
+                            <span class="icon">📁</span> design/
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_css_variables.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_notebook_grids.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_polaroid_cards.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_washi_tapes.css</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_campfire_burn.css</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="tree-node">
+                        <span class="tree-item folder" data-project="leetcode">
+                            <span class="icon">📁</span> leetcode/ <span class="tag-new">NEW</span>
+                        </span>
+                        <div class="tree-sub">
+                            <span class="tree-item file"><span class="icon">📄</span> 01_big_o.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 02_arrays_strings.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 03_hash_maps.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 04_two_pointers.js</span>
+                            <span class="tree-item file"><span class="icon">📄</span> 05_sliding_window.js</span>
+                        </div>
+                    </div>
+
                 </div>
             </nav>
 
-            <div class="sidebar-footer">
+            <div class="sidebar-footer" style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="user-badge">Dashboard</span>
+                <button id="theme-toggle" class="theme-toggle-btn">🌓 Tema</button>
             </div>
         </aside>
 
@@ -143,6 +176,28 @@
                 engine: "VANILLA JS CORE",
                 status: "READY",
                 link: "editor.html?project=platform"
+            },
+            design: {
+                title: "⛺ Cozy Frontend Design",
+                desc: "Pahami konsep desain frontend tingkat lanjut untuk membuat visual scrapbook yang unik. Pelajari CSS Variables bertingkat, background grid notebook, polaroid card tilt, transisi SVG, dan toggle api unggun Day/Night.",
+                difficulty: "ADVANCED",
+                difficultyClass: "text-red",
+                duration: "~3.5 JAM",
+                modules: "5 Pelajaran",
+                engine: "ADVANCED CSS3 / JS",
+                status: "READY",
+                link: "editor.html?project=design"
+            },
+            leetcode: {
+                title: "🧠 LeetCode & Algoritma (Feynman)",
+                desc: "Kuasai 5 fondasi penting pemecahan masalah di LeetCode (Big O, Array/String, Hash Maps, Two Pointers, Sliding Window) menggunakan penjelasan sederhana Metode Feynman.",
+                difficulty: "INTERMEDIATE",
+                difficultyClass: "text-amber",
+                duration: "~3.0 JAM",
+                modules: "5 Pelajaran",
+                engine: "JAVASCRIPT (ES6)",
+                status: "READY",
+                link: "editor.html?project=leetcode"
             }
         };
 
@@ -180,7 +235,7 @@
 > modules: ${data.modules} loaded.
 > compiler_check: OK
 > environment: local_sandbox_active
-> target_destination: portfolio_apple_academy</pre>
+> target_destination: complete it</pre>
                 </div>
                 
                 <a href="${data.link}" class="launch-btn">⚡ LAUNCH WORKSPACE</a>
@@ -196,6 +251,17 @@
                 updatePreview(key);
             });
         });
+
+        // Theme toggle action
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        }
 
         // Init
         updatePreview('dasar');

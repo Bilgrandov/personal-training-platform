@@ -1,34 +1,34 @@
-# Personal Training Platform (Interactive e-Learning Engine)
+# 🎓 Platform Latihan Mandiri: LeetCode & Algoritma (Feynman Method)
 
-A professional-grade, browser-based Interactive e-Learning Platform and Live Code Editor. Built entirely from scratch using Vanilla HTML, CSS, and JavaScript, this project mimics the core architecture of world-class platforms like FreeCodeCamp and CodePen.
+Selamat datang di platform latihan mandiri Anda! Folder ini dirancang khusus untuk membedah konsep-konsep algoritma dan struktur data penting yang sering muncul di LeetCode menggunakan **Metode Feynman** (menjelaskan konsep rumit dengan bahasa yang sangat sederhana, seolah-olah Anda sedang mengajarkannya kepada anak kecil).
 
-## 🚀 Key Features
+---
 
-- **Live Code Execution Engine**: Instantly compiles and renders HTML, CSS, and JavaScript in real-time within an isolated `iframe` without relying on any external libraries.
-- **Dynamic Curriculum Database**: Features a modular Javascript database (`lesson.js`) that injects theory, challenges, and boilerplate code dynamically into the UI.
-- **Advanced 3-Panel Architecture**:
-  - **Instruction Panel**: Displays current lesson theory and challenges.
-  - **Editor Panel**: Dedicated textareas for HTML, CSS, and JS.
-  - **Output Panel**: Real-time rendering viewport.
-- **Custom Draggable Resizer**: Includes a fully custom Vanilla JS implementation of a draggable gutter (resizer) to adjust the width of the instruction panel dynamically.
-- **Toggleable Sidebar**: Smooth UI/UX allowing the instruction panel to be collapsed for a wider coding workspace.
-- **Zero Dependencies**: Built with 100% Vanilla JS, CSS Flexbox, and Semantic HTML.
+## 📌 Mengapa Metode Feynman?
+Jika Anda tidak bisa menjelaskannya dengan sederhana, berarti Anda belum sepenuhnya memahaminya. Setiap modul di platform ini akan:
+1.  Menjelaskan konsep menggunakan analogi kehidupan sehari-hari (tanpa jargon ilmiah yang membingungkan).
+2.  Menyediakan potongan kode riil (dalam bahasa **PHP** dan **Python**).
+3.  Memberikan tantangan latihan mandiri berskala kecil untuk menguji pemahaman Anda.
 
-## 📚 Built-in Modules
-The platform comes pre-loaded with a 5-module industry-standard curriculum to practice web development:
-1. **Foundation Styling**: Understanding relative units (`rem`) and precision colors (`HEX/HSL`).
-2. **Flexbox**: 1-Dimensional layouts for building components like Navbars.
-3. **CSS Grid**: 2-Dimensional layouts for structuring pages and Bento grids.
-4. **HTML Forms**: Understanding traditional behaviors and the difference between GET and POST requests.
-5. **Modern API Handling**: Preventing default form submissions and using the `Fetch API` to simulate HTTP POST requests.
+---
 
-## 💻 Tech Stack
-- **HTML5**
-- **CSS3** (Flexbox, Custom Scrollbars, Modern UI Layouts)
-- **Vanilla JavaScript** (Complex DOM Manipulation, Real-time Event Listeners, String Interpolation, Modular Data Binding)
+## 🗺️ Kurikulum Pembelajaran (5 Modul Utama)
 
-## 🛠️ How to Use
-1. Clone this repository to your local machine.
-2. Open `index.html` in your favorite web browser.
-3. Read the theory on the left panel, solve the challenge by typing in the editor, and watch the results instantly appear on the right!
-4. Click "Selanjutnya" (Next) to advance to the next module.
+Kurikulum ini dipecah menjadi **5 Modul Esensial** yang merupakan fondasi dari 80% soal "Easy" dan "Medium" di LeetCode:
+
+| Modul | Nama Topik | Deskripsi Singkat | Link Materi |
+| :---: | :--- | :--- | :--- |
+| **1** | **Big O Notation (Efisiensi Kode)** | Cara mengukur kecepatan kode tanpa jam sukat (stopwatch). | **[Modul 1: Big O](file:///home/bilgran/repos/personal-training-platform/module1_big_o.md)** |
+| **2** | **Array & String (Pondasi Linear)** | Manipulasi deretan data berurutan dan teknik membaca indeks. | **[Modul 2: Array & String](file:///home/bilgran/repos/personal-training-platform/module2_arrays_strings.md)** |
+| **3** | **Hash Maps (Kunci Rahasia Pencarian)** | Struktur data "Kunci-Nilai" untuk mencari data dalam waktu sekejap. | **[Modul 3: Hash Maps](file:///home/bilgran/repos/personal-training-platform/module3_hash_maps.md)** |
+| **4** | **Two Pointers (Dua Penunjuk)** | Taktik memindai array dari dua arah untuk memotong waktu proses. | **[Modul 4: Two Pointers](file:///home/bilgran/repos/personal-training-platform/module4_two_pointers.md)** |
+| **5** | **Sliding Window (Jendela Geser)** | Cara melacak sub-bagian data secara dinamis tanpa loop bertumpuk. | **[Modul 5: Sliding Window](file:///home/bilgran/repos/personal-training-platform/module5_sliding_window.md)** |
+
+---
+
+## 🚀 Cara Mulai Belajar:
+1.  Mulailah secara berurutan dari **[Modul 1: Big O](file:///home/bilgran/repos/personal-training-platform/module1_big_o.md)**.
+2.  Buka materi modulnya, baca penjelasan Feynman-nya, dan kerjakan latihan tantangannya di kertas atau file coretan Anda.
+3.  Jangan pindah ke modul berikutnya sebelum Anda merasa bisa menjelaskan kembali konsep modul tersebut kepada orang lain menggunakan kata-kata Anda sendiri.
+
+*Ingat, belajar perlahan tapi paham 100% jauh lebih baik daripada menyelesaikan puluhan soal LeetCode dengan menyalin kode tanpa mengerti alurnya.*

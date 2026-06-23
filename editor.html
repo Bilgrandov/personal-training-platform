@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Interactive Editor - Developer Portal</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <script>
+        const initialTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', initialTheme);
+    </script>
 </head>
 
 <body>
@@ -36,6 +40,7 @@
             <div class="editor-nav">
                 <a href="index.html" class="nav-btn-secondary">🏠 Dashboard</a>
                 <button id="toggle-materi" class="nav-btn-primary">📖 Materi</button>
+                <button id="theme-toggle" class="nav-btn-secondary" style="margin-left: auto;">🌓 Tema</button>
             </div>
 
             <!-- HTML Editor Group -->

@@ -194,5 +194,104 @@ const databaseMateri = {
             kodeCSS: "body { background: #111; color: white; font-family: sans-serif; padding: 20px; }\n.kotak { border: 1px solid #555; padding: 20px; border-radius: 8px; }",
             kodeJS: "// Kita pura-pura menangkap URL dari browser\nconst simulasiURL = '?project=master-dom';\n\n// 1. Ekstrak kuncinya menggunakan API browser\nconst urlParams = new URLSearchParams(simulasiURL);\n\n// 2. Ambil nilai dari parameter 'project'\nconst namaProyek = urlParams.get('project');\n\ndocument.getElementById('hasil-rute').textContent = 'Memuat Modul Proyek: ' + namaProyek;"
         }
+    ],
+
+    // Proyek 5: Cozy Frontend Design
+    design: [
+        {
+            id: 1,
+            judul: "🎨 Modul 1: CSS Variables & Dynamic Themes",
+            teori: "Desain modern tidak mendefinisikan warna kaku di setiap tag. Kita menggunakan CSS Custom Properties (Variables) di :root yang bisa kita timpa secara massal di dalam class .night-mode pada tag body. Ini mempermudah transisi tema Day/Night secara instan.",
+            tantangan: "Tantangan: Definisikan CSS variable '--primary-color: #E05A47;' di dalam :root, lalu gunakan variabel tersebut sebagai nilai properti color untuk mewarnai teks judul h1.",
+            kodeHTML: "<h1>Cozy Camping Logbook ⛺</h1>",
+            kodeCSS: "/* Ketik CSS di bawah ini */\n:root {\n  \n}\n\nh1 {\n  \n}",
+            kodeJS: "// Tidak membutuhkan Javascript untuk saat ini"
+        },
+        {
+            id: 2,
+            judul: "📝 Modul 2: Grid Notebook Paper (Gradasi CSS)",
+            teori: "Kita dapat merakit garis kotak-kotak buku tulis/notebook murni menggunakan kemampuan linear-gradient() di CSS tanpa menggunakan gambar. CSS akan membuat satu sel garis kecil berukuran 30px dan merendernya secara berulang menggunakan background-size.",
+            tantangan: "Tantangan: Lengkapi background-image di body dengan menambahkan to right gradient agar garisnya menyilang membentuk kotak: 'linear-gradient(to right, #E6D8BE 1px, transparent 1px)' dan atur ukurannya (background-size) menjadi 30px 30px.",
+            kodeHTML: "<h3>Jurnal Petualangan Camp</h3>\n<p>Kotak garis kertas ini dibuat murni menggunakan matematika gradasi CSS.</p>",
+            kodeCSS: "body {\n  background-color: #FAF5EB;\n  color: #2D3A3A;\n  min-height: 200px;\n  /* Tambahkan to right gradient di sebelah to bottom gradient dipisahkan koma */\n  background-image: linear-gradient(to bottom, #F0E6D2 1px, transparent 1px);\n  /* Set background-size di bawah: */\n  \n}",
+            kodeJS: "// Kosong"
+        },
+        {
+            id: 3,
+            judul: "📷 Modul 3: Polaroid Frame & Dynamic Rotation",
+            teori: "Efek foto Polaroid dibuat dengan memberikan border putih tebal dan padding bawah ekstra untuk tulisan tangan. Agar letaknya tersebar alami seperti foto fisik di atas meja, kita memutarnya secara acak menggunakan transform: rotate() yang membaca properti dinamis --rotation-angle.",
+            tantangan: "Tantangan: Pasang transform: rotate() menggunakan variable --rotation-angle yang sudah disisipkan secara acak pada tag HTML .polaroid.",
+            kodeHTML: "<div class=\"polaroid\" style=\"--rotation-angle: -3deg;\">\n  <img src=\"https://picsum.photos/200/140\" alt=\"Campsite\">\n  <p class=\"caption\">Gunung Fuji - Sore</p>\n</div>",
+            kodeCSS: "body { background: #FAF5EB; padding: 20px; }\n.polaroid {\n  background: white;\n  padding: 12px 12px 24px 12px;\n  border: 1px solid #ddd;\n  width: 224px;\n  box-shadow: 6px 6px 12px rgba(0,0,0,0.1);\n  /* Panggil transform: rotate() menggunakan var(--rotation-angle) di bawah: */\n  \n}\n.polaroid img { width: 100%; display: block; border: 1px solid #eee; }\n.caption { text-align: center; margin-top: 10px; font-family: cursive; color: #333; }",
+            kodeJS: "// Kosong"
+        },
+        {
+            id: 4,
+            judul: "🩹 Modul 4: Washi Tape (Pita Perekat Transparan)",
+            teori: "Selotip kertas semitransparan (washi tape) dapat disimulasikan di CSS menggunakan background-color bertingkat RGBA (Red Green Blue Alpha) dikombinasikan dengan border putus-putus (dashed) di sisi kiri-kanan untuk meniru robekan kertas selotip.",
+            tantangan: "Tantangan: Tempelkan selotip ke tengah atas kartu polaroid dengan menuliskan properti absolute positioning: position: absolute, top: -12px, left: 50%, dan transform: translateX(-50%).",
+            kodeHTML: "<div class=\"card\" style=\"position: relative; margin-top: 30px;\">\n  <div class=\"tape\"></div>\n  <div class=\"polaroid\" style=\"background: white; padding: 15px; border: 1px solid #ccc; width: 180px;\">\n    <img src=\"https://picsum.photos/150/110\" style=\"display: block;\">\n  </div>\n</div>",
+            kodeCSS: ".tape {\n  width: 80px;\n  height: 20px;\n  background-color: rgba(230, 161, 92, 0.4);\n  border-left: 2px dashed rgba(0,0,0,0.1);\n  border-right: 2px dashed rgba(0,0,0,0.1);\n  /* Ketik absolute position di bawah agar menimpa bagian tengah atas kartu */\n  \n}",
+            kodeJS: "// Kosong"
+        },
+        {
+            id: 5,
+            judul: "🔥 Modul 5: CSS Campfire (Animasi Api Unggun)",
+            teori: "Kita dapat menggambar bentuk api menggunakan penumpukan border-radius melengkung, lalu memicu gerakannya menggunakan aturan @keyframes di CSS untuk merubah ukuran tinggi api (scaleY) secara terus-menerus.",
+            tantangan: "Tantangan: Jalankan animasi 'burn' di class .flame selama 1.2 detik secara berulang-ulang (infinite) dan bolak-balik (alternate).",
+            kodeHTML: "<div class=\"campfire\">\n  <div class=\"flame\"></div>\n</div>",
+            kodeCSS: ".campfire { position: relative; width: 100px; height: 100px; margin: 30px; }\n.flame {\n  width: 40px;\n  height: 60px;\n  background: linear-gradient(to top, #FF4D00, #FFD000);\n  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;\n  transform-origin: bottom center;\n  /* Terapkan properti animation 'burn' di bawah ini: */\n  \n}\n\n@keyframes burn {\n  0% { transform: scaleY(0.9) rotate(-2deg); }\n  100% { transform: scaleY(1.15) rotate(2deg); }\n}",
+            kodeJS: "// Kosong"
+        }
+    ],
+    
+    // Proyek 6: LeetCode & Algoritma (Feynman)
+    leetcode: [
+        {
+            id: 1,
+            judul: "🧠 Modul 1: Big O Notation (Efisiensi Kode)",
+            teori: "Big O mengukur seberapa banyak langkah kerja kode kita saat data (N) bertambah banyak. <br><br>1. <b>O(1) - Constant</b>: Kecepatannya tetap (1 langkah), berapapun datanya. Contoh: mengambil warna sampul buku depan.<br>2. <b>O(N) - Linear</b>: Kecepatannya berbanding lurus dengan jumlah data. Contoh: mencari nama dengan membuka halaman buku telepon satu-per-satu dari awal sampai akhir.",
+            tantangan: "Lengkapi fungsi O(1) 'cariSampul' agar langsung mengambil elemen pertama array, dan fungsi O(N) 'cariNama' agar mencari indeks nama target di dalam array.",
+            kodeHTML: "<h2>🧠 Platform Feynman: Big O</h2>\n<p>Gunakan tab <b>script.js</b> di sebelah kanan untuk menulis kodemu, lalu perhatikan output pengujiannya di <b>Terminal Sandbox</b> di bawah.</p>",
+            kodeCSS: "body {\n  font-family: sans-serif;\n  color: white;\n  background: #1e1e1e;\n  padding: 20px;\n}",
+            kodeJS: "// TANTANGAN:\n// 1. Lengkapi fungsi O(1) 'cariSampul' agar langsung mengembalikan elemen pertama dari array.\n// 2. Lengkapi fungsi O(N) 'cariNama' agar mencari nama target menggunakan perulangan.\n\nfunction cariSampul(buku) {\n  // Tulis kodemu di bawah ini:\n  \n}\n\nfunction cariNama(buku, target) {\n  // Tulis kodemu di bawah ini (gunakan loop for):\n  \n}\n\n// --- TEST SUITE (JANGAN DIUBAH) ---\n(function() {\n  const data = [\"Sampul Biru\", \"Andi\", \"Budi\", \"Cici\"];\n  console.log(\"Menjalankan Pengujian...\");\n  try {\n      const s = cariSampul(data);\n      const n1 = cariNama(data, \"Budi\");\n      const n2 = cariNama(data, \"Zola\");\n      \n      if (s === \"Sampul Biru\" && n1 === 2 && n2 === -1) {\n          console.log(\"🎉 SELAMAT! Kode Anda berhasil lolos pengujian Big O.\");\n      } else {\n          console.log(\"⚠️ Hasil fungsi belum sesuai. Periksa kembali logika Anda.\");\n      }\n  } catch(e) {\n      console.log(\"❌ Terjadi Error: \" + e.message);\n  }\n})();"
+        },
+        {
+            id: 2,
+            judul: "🗂️ Modul 2: Array & String (Pondasi Linear)",
+            teori: "Array adalah deretan data berurutan seperti gerbong kereta. Gerbong pertama selalu diberi indeks <b>0</b>. <br>Kesalahan pemula yang paling sering terjadi adalah mencoba mengakses indeks di luar kapasitas total gerbong (Index Out of Bounds / Off-by-one). Untuk gerbong sepanjang N, pintu terakhir selalu berada di indeks <b>N - 1</b>.",
+            tantangan: "Lengkapi fungsi 'ambilGerbongTerakhir' agar mengembalikan isi dari elemen paling belakang kereta, tanpa melakukan hardcode indeks secara manual.",
+            kodeHTML: "<h2>🧠 Platform Feynman: Array & String</h2>\n<p>Gunakan tab <b>script.js</b> di sebelah kanan untuk menulis kodemu, lalu perhatikan output pengujiannya di <b>Terminal Sandbox</b> di bawah.</p>",
+            kodeCSS: "body {\n  font-family: sans-serif;\n  color: white;\n  background: #1e1e1e;\n  padding: 20px;\n}",
+            kodeJS: "// TANTANGAN:\n// Lengkapi fungsi 'ambilGerbongTerakhir' agar mengembalikan\n// elemen paling belakang dari array 'kereta'.\n// Jangan hardcode indeksnya (gunakan properti .length).\n\nfunction ambilGerbongTerakhir(kereta) {\n  // Tulis kodemu di bawah ini:\n  \n}\n\n// --- TEST SUITE (JANGAN DIUBAH) ---\n(function() {\n  console.log(\"Menguji gerbong kereta...\");\n  try {\n      const k1 = [\"A\", \"B\", \"C\"];\n      const k2 = [\"Solo\", \"Jogja\", \"Bandung\", \"Jakarta\"];\n      \n      if (ambilGerbongTerakhir(k1) === \"C\" && ambilGerbongTerakhir(k2) === \"Jakarta\") {\n          console.log(\"🎉 SELAMAT! Anda berhasil mengambil gerbong terakhir dengan benar.\");\n      } else {\n          console.log(\"⚠️ Output salah atau terdeteksi hardcode indeks.\");\n      }\n  } catch(e) {\n      console.log(\"❌ Terjadi Error: \" + e.message);\n  }\n})();"
+        },
+        {
+            id: 3,
+            judul: "🔑 Modul 3: Hash Maps (Pencarian Instan O(1))",
+            teori: "Mencari data satu per satu di array butuh O(N) langkah. <br>Dengan <b>Hash Map</b> (menggunakan tipe data Object di JavaScript), kita menyimpan data sebagai pasangan <b>Key (Kunci) dan Value (Nilai)</b>. Komputer bisa menembak langsung ke kunci tersebut secara instan tanpa perlu memutar seluruh data, sehingga waktu carinya hanya <b>O(1)</b>.",
+            tantangan: "Lengkapi fungsi 'cariHarga' agar membaca harga barang dari objek 'hargaBarang' menggunakan kunci parameternya secara instan O(1). Jika tidak ada di daftar, kembalikan 0.",
+            kodeHTML: "<h2>🧠 Platform Feynman: Hash Map</h2>\n<p>Gunakan tab <b>script.js</b> di sebelah kanan untuk menulis kodemu, lalu perhatikan output pengujiannya di <b>Terminal Sandbox</b> di bawah.</p>",
+            kodeCSS: "body {\n  font-family: sans-serif;\n  color: white;\n  background: #1e1e1e;\n  padding: 20px;\n}",
+            kodeJS: "// TANTANGAN:\n// Gunakan Object 'hargaBarang' (Hash Map) untuk mengambil harga barang\n// secara instan O(1) berdasarkan nama barang yang dikirim lewat parameter.\n// Jika barang tidak ditemukan di daftar, kembalikan 0.\n\nconst hargaBarang = {\n  \"Apel\": 5000,\n  \"Pisang\": 3000,\n  \"Jeruk\": 4000\n};\n\nfunction cariHarga(barang) {\n  // Tulis kodemu di bawah ini:\n  \n}\n\n// --- TEST SUITE (JANGAN DIUBAH) ---\n(function() {\n  console.log(\"Memulai pencarian harga...\");\n  try {\n      if (cariHarga(\"Apel\") === 5000 && cariHarga(\"Jeruk\") === 4000 && cariHarga(\"Melon\") === 0) {\n          console.log(\"🎉 SELAMAT! Pencarian cepat O(1) menggunakan Hash Map berhasil.\");\n      } else {\n          console.log(\"⚠️ Hasil tidak cocok. Pastikan mengakses object dengan benar.\");\n      }\n  } catch(e) {\n      console.log(\"❌ Terjadi Error: \" + e.message);\n  }\n})();"
+        },
+        {
+            id: 4,
+            judul: "🚶‍♂️ Modul 4: Two Pointers Technique (Dua Penunjuk)",
+            teori: "Menyisir lorong panjang sendirian untuk membandingkan semua isi kamar akan memakan waktu O(N^2). <br>Dengan teknik <b>Two Pointers</b>, satu orang menyapu dari ujung kiri, dan satu orang menyapu dari ujung kanan secara bersamaan hingga mereka bertemu di tengah. Ini memotong waktu kerja menjadi linear <b>O(N)</b>.",
+            tantangan: "Lengkapi fungsi 'cekPalindrome' menggunakan perulangan while yang membandingkan karakter pointer kiri dan kanan. Jika tidak cocok, kembalikan false. Jangan lupa menggeser pointernya.",
+            kodeHTML: "<h2>🧠 Platform Feynman: Two Pointers</h2>\n<p>Gunakan tab <b>script.js</b> di sebelah kanan untuk menulis kodemu, lalu perhatikan output pengujiannya di <b>Terminal Sandbox</b> di bawah.</p>",
+            kodeCSS: "body {\n  font-family: sans-serif;\n  color: white;\n  background: #1e1e1e;\n  padding: 20px;\n}",
+            kodeJS: "// TANTANGAN:\n// Lengkapi fungsi 'cekPalindrome' menggunakan teknik Two Pointers\n// (pointer kiri dan pointer kanan yang saling mendekati).\n// Kembalikan true jika kata adalah palindrome, dan false jika tidak.\n\nfunction cekPalindrome(kata) {\n  let kiri = 0;\n  let kanan = kata.length - 1;\n  \n  // Tulis perulangan while di bawah ini:\n  \n  return true;\n}\n\n// --- TEST SUITE (JANGAN DIUBAH) ---\n(function() {\n  console.log(\"Menguji kata palindrome...\");\n  try {\n      if (cekPalindrome(\"radar\") === true && cekPalindrome(\"katak\") === true && cekPalindrome(\"kucing\") === false) {\n          console.log(\"🎉 SELAMAT! Logika Two Pointers Anda berfungsi dengan sempurna.\");\n      } else {\n          console.log(\"⚠️ Hasil belum tepat. Periksa batas pergeseran kiri dan kanan.\");\n      }\n  } catch(e) {\n      console.log(\"❌ Terjadi Error: \" + e.message);\n  }\n})();"
+        },
+        {
+            id: 5,
+            judul: "🪟 Modul 5: Sliding Window (Jendela Geser)",
+            teori: "Daripada merakit ulang frame foto pemandangan dari nol setiap kali bergeser, kita cukup menggeser bingkainya sedikit. Kita membuang satu foto yang keluar dari kiri, dan menyerap satu foto baru yang masuk dari kanan. Pola ini sangat ampuh mengoptimalkan sub-array dari O(N*K) menjadi <b>O(N)</b>.",
+            tantangan: "Lengkapi loop for di bawah untuk menyelesaikan pergeseran jendela dengan rumus: 'jumlah = jumlah + elemen_masuk - elemen_keluar'.",
+            kodeHTML: "<h2>🧠 Platform Feynman: Sliding Window</h2>\n<p>Gunakan tab <b>script.js</b> di sebelah kanan untuk menulis kodemu, lalu perhatikan output pengujiannya di <b>Terminal Sandbox</b> di bawah.</p>",
+            kodeCSS: "body {\n  font-family: sans-serif;\n  color: white;\n  background: #1e1e1e;\n  padding: 20px;\n}",
+            kodeJS: "// TANTANGAN:\n// Hitung jumlah maksimum dari sub-array dengan panjang K \n// menggunakan teknik Sliding Window (menghindari double-looping).\n\nfunction maxSubArraySum(arr, k) {\n  if (arr.length < k) return 0;\n  \n  // 1. Hitung jumlah jendela pertama\n  let windowSum = 0;\n  for (let i = 0; i < k; i++) {\n      windowSum += arr[i];\n  }\n  \n  let maxSum = windowSum;\n  \n  // 2. Geser jendela ke kanan (lengkapi logika di dalam loop)\n  for (let i = k; i < arr.length; i++) {\n      // windowSum += elemen_masuk - elemen_keluar_kiri;\n      // (Petunjuk: elemen_masuk = arr[i], elemen_keluar_kiri = arr[i - k])\n      \n      maxSum = Math.max(maxSum, windowSum);\n  }\n  \n  return maxSum;\n}\n\n// --- TEST SUITE (JANGAN DIUBAH) ---\n(function() {\n  console.log(\"Menguji Sliding Window...\");\n  try {\n      const arr = [2, 1, 5, 1, 3, 2];\n      if (maxSubArraySum(arr, 3) === 9) {\n          console.log(\"🎉 SELAMAT! Teknik Sliding Window Anda sukses berjalan.\");\n      } else {\n          console.log(\"⚠️ Jumlah maksimal sub-array tidak tepat.\");\n      }\n  } catch(e) {\n      console.log(\"❌ Terjadi Error: \" + e.message);\n  }\n})();"
+        }
     ]
 };
+

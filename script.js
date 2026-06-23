@@ -201,3 +201,16 @@ btnPrev.addEventListener('click', () => {
 
 // Initialize first lesson on load
 muatPelajaran();
+
+// ==========================================
+// 6. Theme Toggle Logic
+// ==========================================
+const btnThemeToggle = document.getElementById('theme-toggle');
+if (btnThemeToggle) {
+    btnThemeToggle.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
